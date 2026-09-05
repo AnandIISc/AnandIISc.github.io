@@ -62,6 +62,26 @@ const phrases = [
     'AI Systems / Accelerated Computing'
 ];
 
+// Keep the resume action visible without changing the existing visual layout.
+const heroButtons = document.querySelector('.hero-buttons');
+if (heroButtons) {
+    const resume = document.createElement('a');
+    resume.className = 'btn btn-secondary';
+    resume.textContent = 'Resume (coming soon)';
+    resume.setAttribute('aria-disabled', 'true');
+    resume.setAttribute('title', 'Public Systems Software Engineer resume coming soon');
+    resume.style.opacity = '0.55';
+    resume.style.pointerEvents = 'none';
+    heroButtons.appendChild(resume);
+}
+
+document.querySelectorAll('.timeline-list li').forEach((item) => {
+    item.innerHTML = item.innerHTML
+        .replace('profile metrics record', 'measured results include')
+        .replace('and few-shot approaches', 'transfer-learning approaches');
+});
+
+
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
