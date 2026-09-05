@@ -4,6 +4,10 @@
 
 // Navbar scroll effect
 const navbar = document.querySelector('.navbar');
+const navBrand = document.querySelector('.nav-brand');
+if (navBrand) {
+    navBrand.innerHTML = '<span class="nav-name">Anand Kumar</span><span class="nav-scope">systems / embedded / security / edge-ai</span>';
+}
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
