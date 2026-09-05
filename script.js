@@ -55,11 +55,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 const typingText = document.querySelector('.typing-text');
 const phrases = [
-    'Systems Engineer',
-    'Linux Kernel Developer',
-    'AI Infrastructure Specialist',
-    'Low-Level Computing Expert',
-    'Open Source Contributor'
+    'Systems Software Engineer',
+    'Linux / UNIX & POSIX',
+    'Embedded Systems',
+    'Computer Vision & Edge AI',
+    'AI Systems / Accelerated Computing'
 ];
 
 let phraseIndex = 0;
