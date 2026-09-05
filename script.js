@@ -8,6 +8,8 @@ const navBrand = document.querySelector('.nav-brand');
 if (navBrand) {
     navBrand.innerHTML = '<span class="nav-name">Anand Kumar</span><span class="nav-scope">systems / embedded / security / edge-ai</span>';
 }
+const codeComment = document.querySelector('.code-content .comment');
+if (codeComment) codeComment.textContent = '// Systems software | Linux/UNIX | security | embedded | edge AI';
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {

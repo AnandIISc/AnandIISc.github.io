@@ -203,7 +203,7 @@ body {
 
 .hero-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 60px;
     align-items: center;
     position: relative;
@@ -392,6 +392,7 @@ body {
     margin: 0;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .code-content .keyword { color: #ff79c6; }
