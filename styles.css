@@ -210,6 +210,13 @@ body {
     z-index: 1;
 }
 
+.hero-visual,
+.code-window,
+.code-content {
+    min-width: 0;
+    max-width: 100%;
+}
+
 .hero-text h1 {
     font-size: 5rem;
     font-weight: 700;
@@ -379,6 +386,12 @@ body {
     font-family: var(--font-mono);
     font-size: 0.9rem;
     line-height: 1.6;
+}
+
+.code-content pre {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 .code-content .keyword { color: #ff79c6; }
