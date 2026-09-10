@@ -10,6 +10,22 @@ if (navBrand) {
 }
 const codeComment = document.querySelector('.code-content .comment');
 if (codeComment) codeComment.textContent = '// Systems software | Linux/UNIX | security | embedded | edge AI';
+
+const cradlewiseItem = [...document.querySelectorAll('.timeline-item')]
+    .find((item) => item.querySelector('.company')?.textContent.includes('Cradlewise'));
+if (cradlewiseItem) {
+    const content = cradlewiseItem.querySelector('.timeline-content');
+    content.innerHTML = `
+        <div class="timeline-header"><h3>Embedded Software Engineer</h3><span class="company">Cradlewise Inc</span><span class="duration">Jul 2022 – Jan 2024</span></div>
+        <p class="timeline-subtitle">Embedded Linux, connected devices, vision and production validation</p>
+        <ul class="timeline-list">
+            <li><strong>Embedded product & connectivity:</strong> designed and implemented first-time device onboarding and provisioning, using BLE for initial discovery and Wi-Fi credential provisioning before handoff to Wi-Fi. Built Linux device services and debugged system-level integration issues.</li>
+            <li><strong>Vision & hardware integration:</strong> integrated and debugged camera and media pipelines across the device stack, working with V4L2, GStreamer and OpenCV alongside hardware/software interfaces.</li>
+            <li><strong>Bring-up & manufacturing validation:</strong> led board bring-up and manufacturing test automation with Python/PyQt tools and automated jigs across compute, camera and power boards. Covered secure firmware provisioning, CPU/GPU/video workloads, I2C/SPI peripherals, camera calibration, power/cable checks, motor/accelerometer tests, and FFT-based speaker/microphone analysis.</li>
+            <li><strong>Production systems:</strong> integrated test results with AWS for traceability and remote failure diagnosis; led board validation in China, end-of-line system integration in Vietnam, and remote resolution of production issues with factory operators.</li>
+        </ul>
+        <div class="tech-tags"><span class="tag">Embedded Linux</span><span class="tag">BLE / Wi-Fi</span><span class="tag">V4L2</span><span class="tag">GStreamer</span><span class="tag">OpenCV</span><span class="tag">Python / PyQt</span><span class="tag">AWS</span></div>`;
+}
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
