@@ -7,6 +7,8 @@ tags:
   - template
 author: Anand Kumar
 permalink: /notes/template-note/
+sitemap: false
+noindex: true
 seo_title: "Template Note — Replace Before Publishing"
 seo_description: "Placeholder for an Anand Kumar Engineering Note."
 ---
