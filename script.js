@@ -51,6 +51,27 @@ addArchitecture(cadItem, 'Research flow', [
     'CNC machining', 'multi-sensor acquisition', 'signal processing / sensor fusion', 'ML / transfer learning', 'tool-condition prediction'
 ]);
 
+const education = document.querySelector('.education');
+if (education) {
+    education.querySelectorAll('p').forEach((paragraph) => {
+        if (/CAD Lab|I3D Lab|4\+ years/i.test(paragraph.textContent)) paragraph.remove();
+    });
+}
+
+const researchSection = [...document.querySelectorAll('section.experience')]
+    .find((section) => section.querySelector('.section-title')?.textContent.includes('Research Experience'));
+if (researchSection) {
+    const contactSection = document.querySelector('#contact');
+    if (contactSection) contactSection.parentNode.insertBefore(researchSection, contactSection);
+    const timeline = researchSection.querySelector('.timeline');
+    if (timeline && !timeline.textContent.includes('I3D Lab')) {
+        const i3d = document.createElement('div');
+        i3d.className = 'timeline-item';
+        i3d.innerHTML = `<div class="timeline-dot"></div><div class="timeline-content"><div class="timeline-header"><h3>Student Researcher</h3><span class="company">I3D Lab, IISc Bangalore</span><span class="duration">Jun 2021 – Nov 2021</span></div><p class="timeline-subtitle">Robotics, augmented reality and human-robot interaction</p><ul class="timeline-list"><li>Developed gesture-recognition and spatial-mapping pipelines using Microsoft HoloLens.</li><li>Worked with ROS and communication protocols for human-robot interaction and robotic control systems.</li></ul><div class="tech-tags"><span class="tag">HoloLens</span><span class="tag">ROS</span><span class="tag">Spatial Mapping</span><span class="tag">Gesture Recognition</span></div></div>`;
+        timeline.appendChild(i3d);
+    }
+}
+
 const projectsGrid = document.querySelector('#projects .projects-grid');
 if (projectsGrid) {
     projectsGrid.innerHTML = `
