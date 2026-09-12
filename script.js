@@ -26,6 +26,40 @@ if (cradlewiseItem) {
         </ul>
         <div class="tech-tags"><span class="tag">Embedded Linux</span><span class="tag">BLE / Wi-Fi</span><span class="tag">V4L2</span><span class="tag">GStreamer</span><span class="tag">OpenCV</span><span class="tag">Python / PyQt</span><span class="tag">AWS</span></div>`;
 }
+
+function addArchitecture(item, label, flow) {
+    if (!item) return;
+    const visual = document.createElement('div');
+    visual.className = 'architecture-visual';
+    visual.innerHTML = `<span class="architecture-label">${label}</span><div class="architecture-flow">${flow.map((step, i) => `<span class="architecture-step">${step}</span>${i < flow.length - 1 ? '<span class="architecture-arrow">→</span>' : ''}`).join('')}</div>`;
+    item.querySelector('.timeline-content')?.appendChild(visual);
+}
+
+const ibmItem = [...document.querySelectorAll('.timeline-item')]
+    .find((item) => item.querySelector('.company')?.textContent.includes('IBM'));
+addArchitecture(ibmItem, 'Where the systems work sits', [
+    'Applications / Users', 'z/OS UNIX', 'OpenSSH / sudo / shell & utilities', 'SAF / RACF', 'z/OS'
+]);
+
+addArchitecture(cradlewiseItem, 'Embedded product path', [
+    'BLE onboarding', 'Wi-Fi provisioning', 'ARM / Linux services', 'V4L2 / GStreamer / OpenCV', 'Edge ML'
+]);
+
+const cadItem = [...document.querySelectorAll('.timeline-item')]
+    .find((item) => item.querySelector('.company')?.textContent.includes('CAD Lab'));
+addArchitecture(cadItem, 'Research flow', [
+    'CNC machining', 'multi-sensor acquisition', 'signal processing / sensor fusion', 'ML / transfer learning', 'tool-condition prediction'
+]);
+
+const projectsGrid = document.querySelector('#projects .projects-grid');
+if (projectsGrid) {
+    projectsGrid.innerHTML = `
+        <div class="project-card"><div class="project-header"><i class="fas fa-shield-alt"></i></div><h3 class="project-title">Systems Security & OS Services</h3><p class="project-description">How I work across C/POSIX services, OpenSSH/SFTP, sudo modernization, authentication boundaries, diagnostics and vulnerability remediation on z/OS UNIX.</p><div class="project-tech"><span>IBM</span><span>C / POSIX</span><span>Security</span></div></div>
+        <div class="project-card"><div class="project-header"><i class="fas fa-link"></i></div><h3 class="project-title">Embedded Product & Connectivity</h3><p class="project-description">First-time device onboarding from BLE discovery and Wi-Fi credential provisioning through ARM/Linux device services and connected-device handoff.</p><div class="project-tech"><span>Cradlewise</span><span>BLE / Wi-Fi</span><span>Embedded Linux</span></div></div>
+        <div class="project-card"><div class="project-header"><i class="fas fa-industry"></i></div><h3 class="project-title">Product Bring-up & Validation</h3><p class="project-description">Python/PyQt factory tools and automated jigs for secure provisioning, board-level validation, subsystem tests, production traceability and remote failure diagnosis.</p><div class="project-tech"><span>Cradlewise</span><span>Python / PyQt</span><span>AWS</span></div></div>
+        <div class="project-card"><div class="project-header"><i class="fas fa-eye"></i></div><h3 class="project-title">Vision / Edge ML</h3><p class="project-description">Embedded camera and media pipelines using V4L2, GStreamer and OpenCV, with edge model optimization and deployment on device hardware.</p><div class="project-tech"><span>Cradlewise</span><span>OpenCV</span><span>Edge ML</span></div></div>
+        <div class="project-card"><div class="project-header"><i class="fas fa-wave-square"></i></div><h3 class="project-title">Smart Manufacturing Research</h3><p class="project-description">IISc CAD Lab research combining synchronized machining signals, signal processing, sensor fusion and transfer-learning experiments for tool-condition prediction.</p><div class="project-tech"><span>IISc CAD Lab</span><span>ML</span><span>Signal Processing</span></div></div>`;
+}
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
