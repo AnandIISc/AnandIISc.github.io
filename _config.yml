@@ -1,0 +1,21 @@
+title: Anand Kumar | Systems Software Engineer
+description: Systems programming, operating systems, security, embedded Linux and performance engineering notes.
+url: "https://anandiisc.github.io"
+baseurl: ""
+author:
+  name: Anand Kumar
+collections:
+  notes:
+    output: true
+    permalink: /notes/:path/
+defaults:
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: note
+      author: Anand Kumar
+      description: Engineering note from Anand Kumar.
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
