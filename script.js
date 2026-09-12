@@ -47,10 +47,21 @@ addArchitecture(cradlewiseItem, 'Embedded product path', [
 
 const cadItem = [...document.querySelectorAll('.timeline-item')]
     .find((item) => item.querySelector('.company')?.textContent.includes('CAD Lab'));
-addArchitecture(cadItem, 'Research flow', [
-    'CNC machining', 'multi-sensor acquisition', 'signal processing / sensor fusion', 'ML / transfer learning', 'tool-condition prediction'
-]);
-
+if (cadItem) {
+    const content = cadItem.querySelector('.timeline-content');
+    content.innerHTML = `
+        <div class="timeline-header"><h3>CNC Digital Twin for Tool Health & Remaining Useful Life</h3><span class="company">CAD Lab, IISc Bangalore</span><span class="duration">Dec 2021 – Jun 2022</span></div>
+        <p class="timeline-subtitle">Virtual sensing and tool-wear prediction for CNC machining</p>
+        <p>Built an end-to-end research pipeline that reconciled physical and machine-side signals into a synchronized dataset for virtual force sensing, progressive flank-wear prediction and remaining useful life estimation.</p>
+        <ul class="timeline-list">
+            <li><strong>Instrumentation:</strong> combined accelerometer, acoustic-emission, thermocouple, CNC controller telemetry and dynamometer reference-force measurements during controlled machining experiments.</li>
+            <li><strong>Signal engineering:</strong> synchronized heterogeneous, multi-rate acquisition sources through preprocessing, filtering of active cutting cycles, windowing and downsampling.</li>
+            <li><strong>Two-stage ML system:</strong> used a time-series deep-learning virtual soft sensor to estimate cutting forces from non-invasive signals, then combined inferred force, acoustic emission and machining parameters for flank-wear and RUL estimation.</li>
+        </ul>
+        <details class="technical-details"><summary>Technical details</summary><p>Controller telemetry and sensor streams were aligned so that high-frequency vibration and acoustic signals could be analyzed alongside lower-frequency controller and thermal measurements. The work also investigated transfer-learning/generalization across machining experiments and changing conditions.</p></details>
+        <div class="architecture-visual"><span class="architecture-label">CNC tool-health pipeline</span><div class="architecture-flow"><span class="architecture-step">CNC lathe</span><span class="architecture-arrow">→</span><span class="architecture-step">Accelerometer · AE · temperature · telemetry · reference force</span><span class="architecture-arrow">→</span><span class="architecture-step">Synchronization + preprocessing</span><span class="architecture-arrow">→</span><span class="architecture-step">Virtual force sensor</span><span class="architecture-arrow">→</span><span class="architecture-step">Tool wear / RUL</span></div></div>
+        <div class="tech-tags"><span class="tag">Time-series ML</span><span class="tag">Signal Processing</span><span class="tag">Sensor Fusion</span><span class="tag">Transfer Learning</span></div>`;
+}
 const education = document.querySelector('.education');
 if (education) {
     education.querySelectorAll('p').forEach((paragraph) => {
