@@ -402,6 +402,42 @@ body {
 .code-content .type { color: #8be9fd; }
 .code-content .number { color: #bd93f9; }
 
+.architecture-visual {
+    margin-top: 1.25rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(100, 255, 218, 0.16);
+    border-radius: 6px;
+    background: rgba(17, 34, 64, 0.55);
+}
+
+.architecture-label {
+    display: block;
+    margin-bottom: 0.65rem;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.architecture-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+}
+
+.architecture-step {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid rgba(136, 146, 176, 0.35);
+    border-radius: 4px;
+}
+
+.architecture-arrow { color: var(--accent); }
+
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
