@@ -2,7 +2,7 @@
 layout: note
 title: "Template Note — Replace Before Publishing"
 description: "A placeholder showing the supported Engineering Notes format. Replace or delete this file before publishing a real note."
-date: 2099-01-01
+date: 2026-01-01
 tags:
   - template
 author: Anand Kumar

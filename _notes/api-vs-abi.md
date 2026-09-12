@@ -1,7 +1,7 @@
 ---
 title: "From printf() to the CPU: Where Do API and ABI Fit?"
 description: "A bottom-up experiment to understand the contracts between C source code, compiled binaries, and the processor."
-date: 2026-09-13
+date: 2026-09-12
 tags:
   - C
   - systems programming
