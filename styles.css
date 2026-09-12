@@ -438,6 +438,40 @@ body {
 
 .architecture-arrow { color: var(--accent); }
 
+.education-entry {
+    padding: 1.15rem 0;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.12);
+}
+
+.education-entry h3 {
+    color: var(--text-primary);
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+}
+
+.education-entry p {
+    color: var(--text-secondary);
+    margin: 0.25rem 0;
+}
+
+.education-label {
+    color: var(--accent) !important;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 0.9rem !important;
+}
+
+.education-focus {
+    color: var(--text-primary) !important;
+}
+
+.education-summary {
+    max-width: 70ch;
+    font-size: 0.92rem;
+}
+
 .scroll-indicator {
     position: absolute;
     bottom: 30px;

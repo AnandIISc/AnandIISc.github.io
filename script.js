@@ -83,9 +83,7 @@ if (cadItem) {
 }
 const education = document.querySelector('.education');
 if (education) {
-    education.querySelectorAll('p').forEach((paragraph) => {
-        if (/CAD Lab|I3D Lab|4\+ years/i.test(paragraph.textContent)) paragraph.remove();
-    });
+    education.innerHTML = `<div class="container"><h2 class="section-title"><span class="title-number">05.</span> Education</h2><div class="education-entry"><h3>Indian Institute of Science (IISc), Bangalore</h3><p><strong>M.Tech — Smart Manufacturing</strong> · 2020–2022</p><p class="education-label">Systems &amp; Computing Focus</p><p class="education-focus">Embedded Systems · TCP/IP &amp; Networking · Processor Design · High-Performance Computing · Computer Vision · Machine Learning</p><p class="education-summary">Applied this coursework through hands-on systems and research projects spanning embedded computing, sensing, computer vision and ML-driven manufacturing systems.</p></div><div class="education-entry"><h3>M.Tech — Computer Science &amp; Engineering</h3><p>Rajiv Gandhi Proudyogiki Vishwavidyalaya · 2018–2020</p></div><div class="education-entry"><h3>B.E. — Information Technology</h3><p>Lakshmi Narain College of Technology · 2012–2016</p></div></div>`;
 }
 
 const researchSection = [...document.querySelectorAll('section.experience')]
