@@ -293,6 +293,154 @@ Or, even more simply:
 That finally connects the two ideas for me.
 
 ---
+## What happens if the binary agreement changes?
+
+The calling convention made the ABI idea clearer, but I wanted to see what happens if two separately compiled components disagree about a data structure.
+
+I used a very small example.
+
+The application was compiled against this header:
+
+```c
+anand@anand-QEMU-Virtual-Machine:~/api_abi_exp$ cat point.h
+typedef struct {
+    long x;
+    long y;
+} Point;
+
+long x_square(Point *p);
+```
+
+The application sets:
+
+```c
+Point p;
+p.x = 2;
+p.y = 9;
+```
+
+First I compiled the application into an object file:
+
+```text
+$ cc -c app.c -o app.o
+```
+
+Then I created a shared library with the same understanding of `Point`:
+
+```c
+typedef struct {
+    long x;
+    long y;
+} Point;
+
+long x_square(Point *p)
+{
+    return p->x * p->x;
+}
+```
+
+Build the library and link the application:
+
+```text
+anand@anand-QEMU-Virtual-Machine:~/api_abi_exp$ cc -shared -fPIC -o libpoint.so lib_my_contract.c
+anand@anand-QEMU-Virtual-Machine:~/api_abi_exp$ cc app.o -L. -lpoint -Wl,-rpath,. -o app
+
+anand@anand-QEMU-Virtual-Machine:~/api_abi_exp$ ./app
+result = 4  (expected 4) → CORRECT
+```
+
+So both separately compiled pieces agreed about the layout:
+
+```text
+Application                 Library
+
+offset 0 → x                offset 0 → x
+offset 8 → y                offset 8 → y
+```
+
+Now I left the application binary unchanged and modified **only the shared library**:
+
+```c
+typedef struct {
+    long z;
+    long x;
+    long y;
+} Point;
+
+long x_square(Point *p)
+{
+    return p->x * p->x;
+}
+```
+
+Then I rebuilt only the library:
+
+```text
+anand@anand-QEMU-Virtual-Machine:~/api_abi_exp$ cc -shared -fPIC -o libpoint.so lib_my_contract.c
+
+anand@anand-QEMU-Virtual-Machine:~/api_abi_exp$ ./app
+result = 81  (expected 4) → WRONG
+```
+
+The function still existed. The library still loaded. The application still called `x_square()`.
+
+But now the two binaries disagreed about where `x` was located:
+
+```text
+Application                 New library
+
+offset 0 → x                offset 0  → z
+offset 8 → y                offset 8  → x
+                            offset 16 → y
+```
+
+So when the library evaluated:
+
+```c
+p->x
+```
+
+it interpreted the bytes at the offset where the old application had placed `y`.
+
+That is why it calculated:
+
+```text
+9 × 9 = 81
+```
+
+instead of:
+
+```text
+2 × 2 = 4
+```
+
+This made the ABI idea more practical for me.
+
+The source-level function still looked the same:
+
+```c
+long x_square(Point *p);
+```
+
+but separately compiled code also had to agree about the binary layout of `Point`.
+
+Interestingly, when I later added the new field at the **end** instead:
+
+```c
+typedef struct {
+    long x;
+    long y;
+    long z;
+} Point;
+```
+
+the experiment returned `4` again, because the offsets of the existing `x` and `y` fields used by this example had not changed.
+
+So ABI compatibility is not simply about whether a structure changed.
+
+What matters is whether a change breaks the binary assumptions that already-compiled code depends on.
+
+---
 
 ## And what about the CPU?
 
